@@ -12,6 +12,8 @@ import {
   MatCardModule,
   MatTabsModule,
   MatSelectModule,
+  MatDividerModule,
+  MatStepperModule,
  } from "@angular/material";
 
 // components
@@ -32,14 +34,16 @@ import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
       used_colors: ["#000000", "#FFF555"]
     }),
     MatSelectModule,
-
-
+    /* */ 
     MatButtonModule,
     MatCardModule,
     MatFormFieldModule,
     MatIconModule,
     MatInputModule,
     MatTabsModule,
+    MatDividerModule,
+    /* */
+    MatStepperModule
   ],
   providers: [],
   bootstrap: [AppComponent]
