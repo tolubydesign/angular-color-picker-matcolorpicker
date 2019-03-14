@@ -1,0 +1,41 @@
+<mat-form-field>
+  <mat-select placeholder="Favorite food">
+    <mat-option *ngFor="let food of foods" [value]="food.value">
+      {{ food.viewValue }}
+    </mat-option>
+  </mat-select>
+</mat-form-field>
+<br />
+
+<mat-color-picker
+  label="color selecting - ok"
+  isOpen="false"
+  btnCancel="shut it"
+  usedColorStart="[white]"
+  usedColorLabel="List of Colors"
+  usedSizeColors="5"
+  (selected)="onSelected($event)"
+  (change)="onChange($event)"
+  (clickOut)="onClickOut($event)"
+>
+</mat-color-picker>
+<br />
+<br />
+
+<mat-card>
+  <mat-card-title>
+    Show used color in reverse
+  </mat-card-title>
+  <mat-card-content>
+    <mcc-color-picker
+      isOpen="false"
+      [usedColorStart]="startingColors"
+      usedColorLabel="List of Colors"
+      usedSizeColors="20"
+      (selected)="onSelected($event)"
+      (clickOut)="onClickOut($event)"
+    >
+      >
+    </mcc-color-picker>
+  </mat-card-content>
+</mat-card>

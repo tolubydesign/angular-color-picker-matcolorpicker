@@ -1,18 +1,50 @@
-import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
+// tslint:disable: quotemark
+import { BrowserModule } from "@angular/platform-browser";
+import { NgModule } from "@angular/core";
+import { MatColorPickerModule } from "mat-color-picker";
+import { MccColorPickerModule } from "material-community-components";
+import { AppRoutingModule } from "./app-routing.module";
+import {
+  MatButtonModule,
+  MatFormFieldModule,
+  MatIconModule,
+  MatInputModule,
+  MatCardModule,
+  MatTabsModule,
+  MatSelectModule,
+ } from "@angular/material";
 
-import { AppRoutingModule } from './app-routing.module';
-import { AppComponent } from './app.component';
+// components
+import { AppComponent } from "./app.component";
+import { ColorPickerComponent } from "./color-picker/color-picker.component";
+
+// MatColorpicker
+import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
 
 @NgModule({
-  declarations: [
-    AppComponent
-  ],
+  declarations: [AppComponent, ColorPickerComponent],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    BrowserAnimationsModule,
+    MatColorPickerModule,
+    MccColorPickerModule.forRoot({
+      used_colors: ["#000000", "#FFF555"]
+    }),
+    MatSelectModule,
+
+
+    MatButtonModule,
+    MatCardModule,
+    MatFormFieldModule,
+    MatIconModule,
+    MatInputModule,
+    MatTabsModule,
   ],
   providers: [],
   bootstrap: [AppComponent]
 })
-export class AppModule { }
+export class AppModule {}
+export class PizzaPartyAppModule {}
+export class ColorPickerModule {}
+
