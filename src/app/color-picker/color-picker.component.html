@@ -22,7 +22,6 @@
       (selected)="onSelected($event)"
       (clickOut)="onClickOut($event)"
     >
-      >
     </mcc-color-picker>
   </mat-card-content>
 </mat-card>
@@ -33,7 +32,10 @@
       <!-- <div style="width: 20px; height:20px; background-color: aquamarine ">
         {{ color }}
       </div> -->
-      <div [style.backgroundColor]="color" style="width:110px; height: 20px">
+      <div
+        [style.backgroundColor]="color"
+        style="width:110px; height: 20px; color: beige"
+      >
         {{ color }} {{ i }}
       </div>
     </li>
@@ -41,14 +43,14 @@
 </div>
 
 <!-- working with stepppers -->
-
+<!-- 
 <button mat-raised-button (click)="isLinear = !isLinear" id="toggle-linear">
   {{ !isLinear ? "Enable linear mode" : "Disable linear mode" }}
 </button>
-<mat-horizontal-stepper [linear]="isLinear" #stepper>
-  <mat-step [stepControl]="firstFormGroup">
-    <form [formGroup]="firstFormGroup">
-      <ng-template matStepLabel>Fill out your name</ng-template>
+<mat-horizontal-stepper linear="isLinear" #stepper>
+  <mat-step stepControl="firstFormGroup">
+    <form formGroup="firstFormGroup">
+      <ng-template matStepLabel>Select a Inital Color</ng-template>
       <mat-form-field>
         <input
           matInput
@@ -62,8 +64,8 @@
       </div>
     </form>
   </mat-step>
-  <mat-step [stepControl]="secondFormGroup">
-    <form [formGroup]="secondFormGroup">
+  <mat-step stepControl="secondFormGroup">
+    <form formGroup="secondFormGroup">
       <ng-template matStepLabel>Fill out your address</ng-template>
       <mat-form-field>
         <input
@@ -87,4 +89,73 @@
       <button mat-button (click)="stepper.reset()">Reset</button>
     </div>
   </mat-step>
-</mat-horizontal-stepper>
+</mat-horizontal-stepper> -->
+
+<!-- modified stepper -->
+
+<mat-card>
+  <mat-horizontal-stepper linear="isLinear" #stepper>
+    <mat-step stepControl="firstFormGroup">
+      <form formGroup="firstFormGroup">
+        <ng-template matStepLabel>Select Shades</ng-template>
+        <!--  -->
+        <mat-card-content>
+          <mcc-color-picker
+            isOpen="false"
+            usedColorLabel="List of Colors"
+            usedSizeColors="3"
+            (selected)="onSelectedShades($event)"
+            (clickOut)="onClickOut($event)"
+          >
+          </mcc-color-picker>
+        </mat-card-content>
+        <!--  -->
+        <div>
+          <ul>
+            <li *ngFor="let color of userShadeValues; let i = index">
+              <!-- <div style="width: 20px; height:20px; background-color: aquamarine ">
+                  {{ color }}
+                </div> -->
+              <div
+                [style.backgroundColor]="color"
+                style="width:110px; height: 20px; color: beige"
+              >
+                {{ color }} {{ i }}
+              </div>
+            </li>
+          </ul>
+        </div>
+        <!--  -->
+        <div>
+          <button mat-button matStepperNext>Next</button>
+        </div>
+        <!--  -->
+      </form>
+    </mat-step>
+    <mat-step stepControl="secondFormGroup">
+      <form formGroup="secondFormGroup">
+        <ng-template matStepLabel>Fill out your address</ng-template>
+        <mat-form-field>
+          <input
+            matInput
+            placeholder="Address"
+            formControlName="secondCtrl"
+            required
+          />
+        </mat-form-field>
+        <div>
+          <button mat-button matStepperPrevious>Back</button>
+          <button mat-button matStepperNext>Next</button>
+        </div>
+      </form>
+    </mat-step>
+    <mat-step>
+      <ng-template matStepLabel>Done</ng-template>
+      You are now done.
+      <div>
+        <button mat-button matStepperPrevious>Back</button>
+        <button mat-button (click)="stepper.reset()">Reset</button>
+      </div>
+    </mat-step>
+  </mat-horizontal-stepper>
+</mat-card>

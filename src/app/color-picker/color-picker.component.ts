@@ -1,5 +1,8 @@
 // tslint:disable: quotemark
-import { Component, OnInit } from "@angular/core";
+import { Component, OnInit, NgModule } from "@angular/core";
+import { FormGroup, FormBuilder, Validators, NgModel } from "@angular/forms";
+import { COLORS } from '../mock-data';
+import { Color } from '../ColorsClass';
 
 
 export interface Food {
@@ -19,8 +22,21 @@ export type MccColorPickerOption = string | MccColorPickerItem;
   templateUrl: "./color-picker.component.html",
   styleUrls: ["./color-picker.component.scss"]
 })
+
+@NgModule({
+  declarations: [
+    FormGroup,
+    FormBuilder,
+    Validators,
+  ],
+})
+
 export class ColorPickerComponent implements OnInit {
   constructor(private _formBuilder: FormBuilder) {}
+
+  /* colors */
+  colorsUserValueSets: Color[];
+  /* */
 
   /* working with Stepers */
   isLinear = false;
@@ -39,23 +55,30 @@ export class ColorPickerComponent implements OnInit {
   userSelectedColorsArray: string[] = [];
 
   startingColors: string[] = ["#FF3380", "#CCCC00", "#66E64D"];
+  /* --- */
+  /* assign values */
+  userShadeValues: string[] = [];
+  
 
   ngOnInit() {
     this.firstFormGroup = this._formBuilder.group({
-      firstCtrl: ['', Validators.required]
+      firstCtrl: ['']
     });
     this.secondFormGroup = this._formBuilder.group({
-      secondCtrl: ['', Validators.required]
+      secondCtrl: ['']
     });
   }
 
-  onSelected($event: string, index) {
+  onSelected($event: string) {
     console.log(":: value selected");
     console.log(this.userSelectedColorsArray);
     console.log({ $event });
-    console.log({ index });
-    const userSelectedColorValue =
-      $event === "none" ? null : this.userSelectedColorsArray.push($event);
+    $event === "none" ? null : this.userSelectedColorsArray.push($event);
+  }
+
+  onSelectedShades($event: string) {
+    console.log('shade index', $event);
+    $event === "none" ? null : this.userShadeValues.push($event);
   }
 
   onChange() {
@@ -70,3 +93,7 @@ export class ColorPickerComponent implements OnInit {
 
 
 }
+
+console.log('shades', COLORS[0].start.shades);
+console.log('start button', COLORS[0].start.start_button);
+console.log('pressed', COLORS[0].start.start_button.pressed);

@@ -13,8 +13,9 @@ import {
   MatTabsModule,
   MatSelectModule,
   MatDividerModule,
-  MatStepperModule,
- } from "@angular/material";
+  MatStepperModule
+} from "@angular/material";
+// import { FormGroup, FormBuilder, Validators } from "@angular/forms";
 
 // components
 import { AppComponent } from "./app.component";
@@ -24,7 +25,7 @@ import { ColorPickerComponent } from "./color-picker/color-picker.component";
 import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
 
 @NgModule({
-  declarations: [AppComponent, ColorPickerComponent],
+  declarations: [AppComponent, ColorPickerComponent, ],
   imports: [
     BrowserModule,
     AppRoutingModule,
@@ -34,7 +35,7 @@ import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
       used_colors: ["#000000", "#FFF555"]
     }),
     MatSelectModule,
-    /* */ 
+    /* */
     MatButtonModule,
     MatCardModule,
     MatFormFieldModule,
@@ -43,7 +44,7 @@ import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
     MatTabsModule,
     MatDividerModule,
     /* */
-    MatStepperModule
+    MatStepperModule,
   ],
   providers: [],
   bootstrap: [AppComponent]
@@ -51,4 +52,3 @@ import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
 export class AppModule {}
 export class PizzaPartyAppModule {}
 export class ColorPickerModule {}
-
