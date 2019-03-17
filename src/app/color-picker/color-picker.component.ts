@@ -50,38 +50,37 @@ export class ColorPickerComponent implements OnInit {
     {
       start: {
         logo: {
-            url: "https://picsum.photos/800/300",
-            height_percentage: 14
+          url: "https://picsum.photos/800/300",
+          height_percentage: 14
         },
-        sub_logo_text_colour: '#FFFFFF',
-        background_url: 'https://picsum.photos/200/300',
+        sub_logo_text_colour: "#FFFFFF",
+        background_url: "https://picsum.photos/200/300",
         footer_logo_url: "https://picsum.photos/200/300",
         footer_logo_text_colour: "#FFFFFF",
         shades: {
-            colour_1: '',
-            colour_2: '',
-            colour_3: ''
+          colour_1: "",
+          colour_2: "",
+          colour_3: ""
         },
         start_button: {
+          border_1_colour: "",
+          border_2_colour: "",
+          border_3_colour: "",
+          fill_colour: "",
+          text_colour: "",
+          pressed: {
             border_1_colour: "",
             border_2_colour: "",
             border_3_colour: "",
             fill_colour: "",
-            text_colour: "",
-            pressed: {
-                border_1_colour: "",
-                border_2_colour: "",
-                border_3_colour: "",
-                fill_colour: "",
-                text_colour: ""
-            }
+            text_colour: ""
+          }
         }
       }
     }
-  ]
-  
-  /* end settings */
+  ];
 
+  /* end settings */
 
   userSelectedColorsArray: string[] = [];
 
@@ -89,9 +88,9 @@ export class ColorPickerComponent implements OnInit {
   /* --- */
   /* assign values */
   userShadeValues: string[] = [];
-  shadesColourOne = this.valueSetting[0].start.shades.colour_1;
-  shadesColourTwo = this.valueSetting[0].start.shades.colour_2;
-  shadesColourThree = this.valueSetting[0].start.shades.colour_3;
+  // shadesColourOne = this.valueSetting[0].start.shades.colour_1;
+  // shadesColourTwo = this.valueSetting[0].start.shades.colour_2;
+  // shadesColourThree = this.valueSetting[0].start.shades.colour_3;
 
   ngOnInit() {
     this.firstFormGroup = this._formBuilder.group({
@@ -128,15 +127,43 @@ export class ColorPickerComponent implements OnInit {
   /* */
 
   /* collection of click functions */
+  // Shade Colours
   onSelectedShadesOne($event) {
-    console.log($event);
-    $event === "none" ? null : this.shadesColourOne = $event;
-    console.log(this.shadesColourOne);
-    console.log("shades", COLORS[0].start.shades);
+    // console.log({$event});
+    this.valueSetting[0].start.shades.colour_1 = $event;
   }
-
+  onSelectedShadesTwo($event) {
+    this.valueSetting[0].start.shades.colour_2 = $event;
+    console.log(this.valueSetting);
+  }
+  onSelectedShadesThree($event) {
+    this.valueSetting[0].start.shades.colour_3 = $event;
+    console.log(this.valueSetting);
+  }
+  // Border Colours
+  onSelectedBorderOne($event) {
+    this.valueSetting[0].start.start_button.border_1_colour = $event;
+    console.log(this.valueSetting);
+  }
+  onSelectedBorderTwo($event) {
+    this.valueSetting[0].start.start_button.border_2_colour = $event;
+    console.log(this.valueSetting);
+  }
+  onSelectedBorderThree($event) {
+    this.valueSetting[0].start.start_button.border_3_colour = $event;
+    console.log(this.valueSetting);
+  }
+  // Fill Colour
+  onSelectedFill($event) {
+    this.valueSetting[0].start.start_button.fill_colour = $event;
+    console.log(this.valueSetting);
+  }
+  // Text Colour
+  onSelectedText($event) {
+    this.valueSetting[0].start.start_button.text_colour = $event;
+    console.log(this.valueSetting);
+  }
 }
-
 
 // console.log("shades", COLORS[0].start.shades);
 // console.log("start button", COLORS[0].start.start_button);
