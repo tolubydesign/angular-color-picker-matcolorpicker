@@ -14,9 +14,9 @@ export const COLORS: Color[] = [
       footer_logo_url: "https://picsum.photos/200/300",
       footer_logo_text_colour: "#FFFFFF",
       shades: {
-          colour_1: 'value(1)',
-          colour_2: 'value(2)',
-          colour_3: 'value(3)'
+          colour_1: '',
+          colour_2: '',
+          colour_3: ''
       },
       start_button: {
           border_1_colour: "",

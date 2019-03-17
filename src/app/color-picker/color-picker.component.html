@@ -100,17 +100,38 @@
         <ng-template matStepLabel>Select Shades</ng-template>
         <!--  -->
         <mat-card-content>
+          <mat-card-title>Shades One</mat-card-title>
           <mcc-color-picker
             isOpen="false"
             usedColorLabel="List of Colors"
             usedSizeColors="3"
-            (selected)="onSelectedShades($event)"
-            (clickOut)="onClickOut($event)"
+            (selected)="onSelectedShadesOne($event)"
+          >
+          </mcc-color-picker>
+        </mat-card-content>
+        <mat-card-content>
+          <mat-card-title>Shades Two</mat-card-title>
+          <mcc-color-picker
+            isOpen="false"
+            usedColorLabel="List of Colors"
+            usedSizeColors="3"
+            (selected)="onSelectedShadesTwo($event)"
+          >
+          </mcc-color-picker>
+        </mat-card-content>
+        <mat-card-content>
+          <mat-card-title>Shades Three</mat-card-title>
+          <mcc-color-picker
+            isOpen="false"
+            usedColorLabel="List of Colors"
+            usedSizeColors="3"
+            (selected)="onSelectedShadesThree($event)"
           >
           </mcc-color-picker>
         </mat-card-content>
         <!--  -->
         <div>
+          <!-- list of colors -->
           <ul>
             <li *ngFor="let color of userShadeValues; let i = index">
               <!-- <div style="width: 20px; height:20px; background-color: aquamarine ">
