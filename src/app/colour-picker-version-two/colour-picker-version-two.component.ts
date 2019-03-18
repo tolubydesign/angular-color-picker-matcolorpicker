@@ -3,6 +3,7 @@ import { Component, OnInit, NgModule } from "@angular/core";
 import { FormGroup, FormBuilder, Validators, NgModel } from "@angular/forms";
 // import { COLORS } from "../mock-data";
 import { Color } from "../ColorsClass";
+import { ButtonStyling, Pressed, TestingClassesVersionOne } from "../button";
 
 @Component({
   selector: "app-colour-picker-version-two",
@@ -59,6 +60,22 @@ export class ColourPickerVersionTwoComponent implements OnInit {
     }
   ];
 
+  // make start button class - pressed is also a type start button. BUT it doesn't contain a pressed
+  // inheritance of class. Constructors.
+  // On the Model StartButton - create a method getKeys which returns a string array of keys  - border_1_colour.... pressed_border_colour
+  // method set colour (key, value) notation. pressed.border_1_colour border_1_colour
+  // Start Button:
+
+  // border_1_colour: "",
+  // border_2_colour: "",
+  // border_3_colour: "",
+  // fill_colour: "",
+  // text_colour: "",
+
+  getKeys() {
+    return 
+  }
+
   ngOnInit() {
     this.firstFormGroup = this._formBuilder.group({
       firstCtrl: [""]
@@ -70,85 +87,110 @@ export class ColourPickerVersionTwoComponent implements OnInit {
       secondCtrl: [""]
     });
     console.log(this.valueSetting);
+
+    // Object.values(this.valueSetting[0].start.shades).forEach((value, index) => {
+    //   console.log({value});
+    //   console.log({index});
+    // });
   }
 
   onChange() {
-    console.log(':: 2', ":: value has changed");
+    console.log(":: 2", ":: value has changed");
   }
 
   onClickOut() {
-    console.log(':: 2', ":: user clicked out");
+    console.log(":: 2", ":: user clicked out");
   }
   /* */
 
   /* collection of click functions */
 
   // Shade Colours
-  onSelectedShadesOne($event) {
-    $event === "none"
-      ? null
-      : (this.valueSetting[0].start.shades.colour_1 = $event);
+  onSelectedShadesOne(e: string) {
+    console.log(":: 2 value", { e });
+    e === "none" ? null : (this.valueSetting[0].start.shades.colour_1 = e);
     console.log(":: 2", this.valueSetting);
   }
-  onSelectedShadesTwo($event) {
-    this.valueSetting[0].start.shades.colour_2 = $event;
+  onSelectedShadesTwo(e: string) {
+    console.log(":: 2 value", { e });
+    this.valueSetting[0].start.shades.colour_2 = e;
     console.log(":: 2", this.valueSetting);
   }
-  onSelectedShadesThree($event) {
-    this.valueSetting[0].start.shades.colour_3 = $event;
+  onSelectedShadesThree(e: string) {
+    console.log(":: 2 value", { e });
+    this.valueSetting[0].start.shades.colour_3 = e;
     console.log(":: 2", this.valueSetting);
   }
 
   // Border Colours
-  onSelectedStartBorderOne($event) {
-    this.valueSetting[0].start.start_button.border_1_colour = $event;
+  onSelectedStartBorderOne(e: string) {
+    console.log(":: 2 value", { e });
+    this.valueSetting[0].start.start_button.border_1_colour = e;
     console.log(":: 2", this.valueSetting);
   }
-  onSelectedStartBorderTwo($event) {
-    this.valueSetting[0].start.start_button.border_2_colour = $event;
+  onSelectedStartBorderTwo(e: string) {
+    console.log(":: 2 value", { e });
+    this.valueSetting[0].start.start_button.border_2_colour = e;
     console.log(":: 2", this.valueSetting);
   }
-  onSelectedStartBorderThree($event) {
-    this.valueSetting[0].start.start_button.border_3_colour = $event;
+  onSelectedStartBorderThree(e: string) {
+    console.log(":: 2 value", { e });
+    this.valueSetting[0].start.start_button.border_3_colour = e;
     console.log(":: 2", this.valueSetting);
   }
 
   // Fill Colour
-  onSelectedStartFill($event) {
-    this.valueSetting[0].start.start_button.fill_colour = $event;
+  onSelectedStartFill(e: string) {
+    console.log(":: 2 value", { e });
+    this.valueSetting[0].start.start_button.fill_colour = e;
     console.log(":: 2", this.valueSetting);
   }
 
   // Text Colour
-  onSelectedStartText($event) {
-    this.valueSetting[0].start.start_button.text_colour = $event;
+  onSelectedStartText(e: string) {
+    console.log(":: 2 value", { e });
+    this.valueSetting[0].start.start_button.text_colour = e;
     console.log(":: 2", this.valueSetting);
   }
 
   // Pressed Colours
-  onSelectedPressedBorderOne($event) {
-    this.valueSetting[0].start.start_button.pressed.border_1_colour = $event;
+  onSelectedPressedBorderOne(e: string) {
+    console.log(":: 2 value", { e });
+    this.valueSetting[0].start.start_button.pressed.border_1_colour = e;
     console.log(":: 2", this.valueSetting);
   }
-  onSelectedPressedBorderTwo($event) {
-    this.valueSetting[0].start.start_button.pressed.border_2_colour = $event;
+  onSelectedPressedBorderTwo(e: string) {
+    console.log(":: 2 value", { e });
+    this.valueSetting[0].start.start_button.pressed.border_2_colour = e;
     console.log(":: 2", this.valueSetting);
   }
-  onSelectedPressedBorderThree($event) {
-    this.valueSetting[0].start.start_button.pressed.border_3_colour = $event;
+  onSelectedPressedBorderThree(e: string) {
+    console.log(":: 2 value", { e });
+    this.valueSetting[0].start.start_button.pressed.border_3_colour = e;
     console.log(":: 2", this.valueSetting);
   }
-  onSelectedPressedFill($event) {
-    this.valueSetting[0].start.start_button.pressed.fill_colour = $event;
+  onSelectedPressedFill(e: string) {
+    console.log(":: 2 value", { e });
+    this.valueSetting[0].start.start_button.pressed.fill_colour = e;
     console.log(":: 2", this.valueSetting);
   }
-  onSelectedPressedText($event) {
-    this.valueSetting[0].start.start_button.pressed.text_colour = $event;
+  onSelectedPressedText(e: string) {
+    console.log(":: 2 value", { e });
+    this.valueSetting[0].start.start_button.pressed.text_colour = e;
     console.log(":: 2", this.valueSetting);
   }
 
   // saving colours
   onSave() {
-    this.valueSetting;
+    return;
   }
 }
+
+const valuation = new TestingClassesVersionOne('Inferno', ['cheese', 'peppers', 'source', 'bilbo']);
+console.log({valuation});
+
+// const valid = new ButtonStyling('semi', ['segment']);
+// console.log({valid});
+
+// const valid = new ButtonStyling(['something'], ['values'])
+

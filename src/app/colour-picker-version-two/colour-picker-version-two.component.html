@@ -3,20 +3,26 @@
     <mat-step stepControl="firstFormGroup">
       <ng-template matStepLabel>Select Shades</ng-template>
       <!--  -->
-      <div ngFor="let item in this.valueSetting[0].start.shades">
-        <mat-card-content>
-          <mat-card-title>{{ item }}</mat-card-title>
-          <mcc-color-picker
-            (selected)="onSelectedShadesOne($event)"
-            usedColorStart="startingColors"
-            hideHexForms="true"
-          >
-          </mcc-color-picker>
-          <p [style.color]="this.valueSetting[0].start.shades.colour_1">
-            {{ this.valueSetting[0].start.shades.colour_1 }}
-          </p>
-        </mat-card-content>
-      </div>
+
+      <mat-card-content
+        *ngFor="let item of valueSetting; index as i"
+      >
+        {{item | json}}
+        <!-- <pre>{{ item | json }}</pre> -->
+        <!-- <mat-card-title>{{ item.start.shades }}</mat-card-title> -->
+
+        <mcc-color-picker
+          (selected)="onSelectedShadesOne($event)"
+          usedColorStart="startingColors"
+          hideHexForms="true"
+        >
+        </mcc-color-picker>
+        <!-- <pre> {{ item.start.shades | json }} </pre>  -->
+        <p [style.color]="this.valueSetting[0].start.shades.colour_1">
+          <!-- {{ this.valueSetting[0].start.shades.colour_1 }} -->
+        </p>
+      </mat-card-content>
+
       <!--  -->
       <div>
         <button mat-button matStepperNext>Next</button>
