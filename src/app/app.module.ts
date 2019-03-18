@@ -23,9 +23,10 @@ import { ColorPickerComponent } from "./color-picker/color-picker.component";
 
 // MatColorpicker
 import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
+import { ColourPickerVersionTwoComponent } from './colour-picker-version-two/colour-picker-version-two.component';
 
 @NgModule({
-  declarations: [AppComponent, ColorPickerComponent, ],
+  declarations: [AppComponent, ColorPickerComponent, ColourPickerVersionTwoComponent, ],
   imports: [
     BrowserModule,
     AppRoutingModule,

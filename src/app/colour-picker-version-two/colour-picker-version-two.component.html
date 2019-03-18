@@ -1,0 +1,208 @@
+<mat-card>
+  <mat-horizontal-stepper linear="isLinear" #stepper>
+    <mat-step stepControl="firstFormGroup">
+      <ng-template matStepLabel>Select Shades</ng-template>
+      <!--  -->
+      <div ngFor="let item in this.valueSetting[0].start.shades">
+        <mat-card-content>
+          <mat-card-title>{{ item }}</mat-card-title>
+          <mcc-color-picker
+            (selected)="onSelectedShadesOne($event)"
+            usedColorStart="startingColors"
+            hideHexForms="true"
+          >
+          </mcc-color-picker>
+          <p [style.color]="this.valueSetting[0].start.shades.colour_1">
+            {{ this.valueSetting[0].start.shades.colour_1 }}
+          </p>
+        </mat-card-content>
+      </div>
+      <!--  -->
+      <div>
+        <button mat-button matStepperNext>Next</button>
+      </div>
+      <!--  -->
+    </mat-step>
+
+    <mat-step stepControl="secondFormGroup">
+      <ng-template matStepLabel>Start Button Colours</ng-template>
+      <!--  -->
+      <mat-card-content>
+        <mat-card-title>Start Button Colour One</mat-card-title>
+        <mcc-color-picker
+          (selected)="onSelectedStartBorderOne($event)"
+          usedColorStart="startingColors"
+          hideHexForms="true"
+        >
+        </mcc-color-picker>
+        <p
+          [style.color]="
+            this.valueSetting[0].start.start_button.border_1_colour
+          "
+        >
+          {{ this.valueSetting[0].start.start_button.border_1_colour }}
+        </p>
+      </mat-card-content>
+      <mat-card-content>
+        <mat-card-title>Start Button Colour Two</mat-card-title>
+        <mcc-color-picker
+          (selected)="onSelectedStartBorderTwo($event)"
+          usedColorStart="startingColors"
+          hideHexForms="true"
+        >
+        </mcc-color-picker>
+        <p
+          [style.color]="
+            this.valueSetting[0].start.start_button.border_2_colour
+          "
+        >
+          {{ this.valueSetting[0].start.start_button.border_2_colour }}
+        </p>
+      </mat-card-content>
+      <mat-card-content>
+        <mat-card-title>Start Button Colour Three</mat-card-title>
+        <mcc-color-picker
+          (selected)="onSelectedStartBorderThree($event)"
+          usedColorStart="startingColors"
+          hideHexForms="true"
+        >
+        </mcc-color-picker>
+        <p
+          [style.color]="
+            this.valueSetting[0].start.start_button.border_3_colour
+          "
+        >
+          {{ this.valueSetting[0].start.start_button.border_3_colour }}
+        </p>
+      </mat-card-content>
+      <mat-card-content>
+        <mat-card-title>Start Button Fill Colour</mat-card-title>
+        <mcc-color-picker
+          (selected)="onSelectedStartFill($event)"
+          usedColorStart="startingColors"
+          hideHexForms="true"
+        >
+        </mcc-color-picker>
+        <p [style.color]="this.valueSetting[0].start.start_button.fill_colour">
+          {{ this.valueSetting[0].start.start_button.fill_colour }}
+        </p>
+      </mat-card-content>
+      <mat-card-content>
+        <mat-card-title>Start Button Text Colour</mat-card-title>
+        <mcc-color-picker
+          (selected)="onSelectedStartText($event)"
+          usedColorStart="startingColors"
+          hideHexForms="true"
+        >
+        </mcc-color-picker>
+        <p [style.color]="this.valueSetting[0].start.start_button.text_colour">
+          {{ this.valueSetting[0].start.start_button.text_colour }}
+        </p>
+      </mat-card-content>
+      <!--  -->
+      <div>
+        <button mat-button matStepperPrevious>Back</button>
+        <button mat-button matStepperNext>Next</button>
+      </div>
+    </mat-step>
+
+    <mat-step stepControl="thirdFormGroup">
+      <ng-template matStepLabel>Select Button Pressed Colours</ng-template>
+      <!--  -->
+      <mat-card-content>
+        <mat-card-title>Pressed Border Colour One</mat-card-title>
+        <mcc-color-picker
+          (selected)="onSelectedPressedBorderOne($event)"
+          usedColorStart="startingColors"
+          hideHexForms="true"
+        >
+        </mcc-color-picker>
+        <p
+          [style.color]="
+            this.valueSetting[0].start.start_button.pressed.border_1_colour
+          "
+        >
+          {{ this.valueSetting[0].start.start_button.pressed.border_1_colour }}
+        </p>
+      </mat-card-content>
+      <mat-card-content>
+        <mat-card-title>Pressed Border Colour Two</mat-card-title>
+        <mcc-color-picker
+          (selected)="onSelectedPressedBorderTwo($event)"
+          usedColorStart="startingColors"
+          hideHexForms="true"
+        >
+        </mcc-color-picker>
+        <p
+          [style.color]="
+            this.valueSetting[0].start.start_button.pressed.border_2_colour
+          "
+        >
+          {{ this.valueSetting[0].start.start_button.pressed.border_2_colour }}
+        </p>
+      </mat-card-content>
+      <mat-card-content>
+        <mat-card-title>Pressed Border Colour Three</mat-card-title>
+        <mcc-color-picker
+          (selected)="onSelectedPressedBorderThree($event)"
+          usedColorStart="startingColors"
+          hideHexForms="true"
+        >
+        </mcc-color-picker>
+        <p
+          [style.color]="
+            this.valueSetting[0].start.start_button.pressed.border_3_colour
+          "
+        >
+          {{ this.valueSetting[0].start.start_button.pressed.border_3_colour }}
+        </p>
+      </mat-card-content>
+      <mat-card-content>
+        <mat-card-title>Pressed Fill Colour</mat-card-title>
+        <mcc-color-picker
+          (selected)="onSelectedPressedFill($event)"
+          usedColorStart="startingColors"
+          hideHexForms="true"
+        >
+        </mcc-color-picker>
+        <p
+          [style.color]="
+            this.valueSetting[0].start.start_button.pressed.fill_colour
+          "
+        >
+          {{ this.valueSetting[0].start.start_button.pressed.fill_colour }}
+        </p>
+      </mat-card-content>
+      <mat-card-content>
+        <mat-card-title>Pressed Text Colour</mat-card-title>
+        <mcc-color-picker
+          (selected)="onSelectedPressedText($event)"
+          usedColorStart="startingColors"
+          hideHexForms="true"
+        >
+        </mcc-color-picker>
+        <p
+          [style.color]="
+            this.valueSetting[0].start.start_button.pressed.text_colour
+          "
+        >
+          {{ this.valueSetting[0].start.start_button.pressed.text_colour }}
+        </p>
+      </mat-card-content>
+      <!--  -->
+      <div>
+        <button mat-button matStepperPrevious>Back</button>
+        <button mat-button matStepperNext>Next</button>
+      </div>
+    </mat-step>
+
+    <mat-step>
+      <ng-template matStepLabel>Done</ng-template>
+      You are now done.
+      <div>
+        <button mat-button matStepperPrevious>Back</button>
+        <button mat-button (click)="onSave()">Save</button>
+      </div>
+    </mat-step>
+  </mat-horizontal-stepper>
+</mat-card>

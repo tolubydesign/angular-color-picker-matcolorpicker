@@ -4,30 +4,16 @@ import { FormGroup, FormBuilder, Validators, NgModel } from "@angular/forms";
 // import { COLORS } from "../mock-data";
 import { Color } from "../ColorsClass";
 
-export interface Food {
-  value: string;
-  viewValue: string;
-}
-
-export interface MccColorPickerItem {
-  text: string;
-  value: string;
-}
-
-export type MccColorPickerOption = string | MccColorPickerItem;
-
 @Component({
-  selector: "app-color-picker",
-  templateUrl: "./color-picker.component.html",
-  styleUrls: ["./color-picker.component.scss"]
+  selector: "app-colour-picker-version-two",
+  templateUrl: "./colour-picker-version-two.component.html",
+  styleUrls: ["./colour-picker-version-two.component.scss"]
 })
 @NgModule({
   declarations: [FormGroup, FormBuilder, Validators]
 })
-
-export class ColorPickerComponent implements OnInit {
+export class ColourPickerVersionTwoComponent implements OnInit {
   constructor(private _formBuilder: FormBuilder) {}
-
   /* colors */
   colorsUserValueSets: Color[];
   /* */
@@ -38,15 +24,6 @@ export class ColorPickerComponent implements OnInit {
   secondFormGroup: FormGroup;
   thirdFormGroup: FormGroup;
   /* end Steppers */
-  /* working with Dropdown */
-  foods: Food[] = [
-    { value: "steak-0", viewValue: "Steak" },
-    { value: "pizza-1", viewValue: "Pizza" },
-    { value: "tacos-3", viewValue: "Tacos" },
-    { value: "fries-2", viewValue: "Fries" }
-  ];
-  /* end Dropdown */
-  /* working with settings */
 
   valueSetting: Color[] = [
     {
@@ -82,18 +59,6 @@ export class ColorPickerComponent implements OnInit {
     }
   ];
 
-  /* end settings */
-
-  userSelectedColorsArray: string[] = [];
-
-  startingColors: string[] = ['#27E9A4'];
-  /* --- */
-  /* assign values */
-  userShadeValues: string[] = [];
-  // shadesColourOne = this.valueSetting[0].start.shades.colour_1;
-  // shadesColourTwo = this.valueSetting[0].start.shades.colour_2;
-  // shadesColourThree = this.valueSetting[0].start.shades.colour_3;
-
   ngOnInit() {
     this.firstFormGroup = this._formBuilder.group({
       firstCtrl: [""]
@@ -107,27 +72,12 @@ export class ColorPickerComponent implements OnInit {
     console.log(this.valueSetting);
   }
 
-  onSelected($event: string) {
-    console.log(":: value selected");
-    console.log(this.userSelectedColorsArray);
-    console.log({ $event });
-    $event === "none" ? null : this.userSelectedColorsArray.push($event);
-  }
-
-  // onSelectedShades($event: string) {
-  //   console.log('shade index', $event);
-  //   $event === "none" ? null : this.userShadeValues.push($event);
-  //   console.log(this.shadesColourOne);
-  //   console.log(this.shadesColourTwo);
-  //   console.log(this.shadesColourThree);
-  // }
-
   onChange() {
-    console.log(":: value has changed");
+    console.log(':: 2', ":: value has changed");
   }
 
   onClickOut() {
-    console.log(":: user clicked out");
+    console.log(':: 2', ":: user clicked out");
   }
   /* */
 
@@ -135,73 +85,70 @@ export class ColorPickerComponent implements OnInit {
 
   // Shade Colours
   onSelectedShadesOne($event) {
-    // console.log({$event});
-    $event === 'none' ? null : this.valueSetting[0].start.shades.colour_1 = $event;
-    console.log(this.valueSetting);
+    $event === "none"
+      ? null
+      : (this.valueSetting[0].start.shades.colour_1 = $event);
+    console.log(":: 2", this.valueSetting);
   }
   onSelectedShadesTwo($event) {
     this.valueSetting[0].start.shades.colour_2 = $event;
-    console.log(this.valueSetting);
+    console.log(":: 2", this.valueSetting);
   }
   onSelectedShadesThree($event) {
     this.valueSetting[0].start.shades.colour_3 = $event;
-    console.log(this.valueSetting);
+    console.log(":: 2", this.valueSetting);
   }
 
   // Border Colours
   onSelectedStartBorderOne($event) {
     this.valueSetting[0].start.start_button.border_1_colour = $event;
-    console.log(this.valueSetting);
+    console.log(":: 2", this.valueSetting);
   }
   onSelectedStartBorderTwo($event) {
     this.valueSetting[0].start.start_button.border_2_colour = $event;
-    console.log(this.valueSetting);
+    console.log(":: 2", this.valueSetting);
   }
   onSelectedStartBorderThree($event) {
     this.valueSetting[0].start.start_button.border_3_colour = $event;
-    console.log(this.valueSetting);
+    console.log(":: 2", this.valueSetting);
   }
 
   // Fill Colour
   onSelectedStartFill($event) {
     this.valueSetting[0].start.start_button.fill_colour = $event;
-    console.log(this.valueSetting);
+    console.log(":: 2", this.valueSetting);
   }
 
   // Text Colour
   onSelectedStartText($event) {
     this.valueSetting[0].start.start_button.text_colour = $event;
-    console.log(this.valueSetting);
+    console.log(":: 2", this.valueSetting);
   }
 
   // Pressed Colours
   onSelectedPressedBorderOne($event) {
     this.valueSetting[0].start.start_button.pressed.border_1_colour = $event;
-    console.log(this.valueSetting);
+    console.log(":: 2", this.valueSetting);
   }
   onSelectedPressedBorderTwo($event) {
     this.valueSetting[0].start.start_button.pressed.border_2_colour = $event;
-    console.log(this.valueSetting);
+    console.log(":: 2", this.valueSetting);
   }
   onSelectedPressedBorderThree($event) {
     this.valueSetting[0].start.start_button.pressed.border_3_colour = $event;
-    console.log(this.valueSetting);
+    console.log(":: 2", this.valueSetting);
   }
   onSelectedPressedFill($event) {
     this.valueSetting[0].start.start_button.pressed.fill_colour = $event;
-    console.log(this.valueSetting);
+    console.log(":: 2", this.valueSetting);
   }
   onSelectedPressedText($event) {
     this.valueSetting[0].start.start_button.pressed.text_colour = $event;
-    console.log(this.valueSetting);
+    console.log(":: 2", this.valueSetting);
   }
 
   // saving colours
   onSave() {
-    this.valueSetting
+    this.valueSetting;
   }
 }
-
-// console.log("shades", COLORS[0].start.shades);
-// console.log("start button", COLORS[0].start.start_button);
-// console.log("pressed", COLORS[0].start.start_button.pressed);
