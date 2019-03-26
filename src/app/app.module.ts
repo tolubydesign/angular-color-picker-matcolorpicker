@@ -16,6 +16,7 @@ import {
   MatStepperModule
 } from "@angular/material";
 // import { FormGroup, FormBuilder, Validators } from "@angular/forms";
+import { HttpClientModule } from '@angular/common/http';
 
 // components
 import { AppComponent } from "./app.component";
@@ -46,6 +47,7 @@ import { ColourPickerVersionTwoComponent } from './colour-picker-version-two/col
     MatDividerModule,
     /* */
     MatStepperModule,
+    HttpClientModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

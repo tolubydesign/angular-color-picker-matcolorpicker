@@ -3,8 +3,20 @@ import { Component, OnInit, NgModule } from "@angular/core";
 import { FormGroup, FormBuilder, Validators, NgModel } from "@angular/forms";
 // import { COLORS } from "../mock-data";
 import { Color } from "../ColorsClass";
-import { ButtonStyling, Pressed, TestingClassesVersionOne } from "../button";
+import {
+  PressedButton,
+  StartingButton,
+  TestingClassesVersionOne
+} from "../button";
+import { ButtonColoursService } from "../button-colours.service";
+// for model to work
+import { Injectable } from "@angular/core";
+import { HttpClient } from "@angular/common/http";
+import { Observable } from "rxjs";
 
+@Injectable({
+  providedIn: "root"
+})
 @Component({
   selector: "app-colour-picker-version-two",
   templateUrl: "./colour-picker-version-two.component.html",
@@ -14,7 +26,8 @@ import { ButtonStyling, Pressed, TestingClassesVersionOne } from "../button";
   declarations: [FormGroup, FormBuilder, Validators]
 })
 export class ColourPickerVersionTwoComponent implements OnInit {
-  constructor(private _formBuilder: FormBuilder) {}
+  // tslint:disable-next-line: variable-name
+  constructor(private _formBuilder: FormBuilder, private http: HttpClient) {}
   /* colors */
   colorsUserValueSets: Color[];
   /* */
@@ -72,9 +85,7 @@ export class ColourPickerVersionTwoComponent implements OnInit {
   // fill_colour: "",
   // text_colour: "",
 
-  getKeys() {
-    return 
-  }
+  public baseUserColourValues = "../data/values.json";
 
   ngOnInit() {
     this.firstFormGroup = this._formBuilder.group({
@@ -86,28 +97,19 @@ export class ColourPickerVersionTwoComponent implements OnInit {
     this.thirdFormGroup = this._formBuilder.group({
       secondCtrl: [""]
     });
-    console.log(this.valueSetting);
-
-    // Object.values(this.valueSetting[0].start.shades).forEach((value, index) => {
-    //   console.log({value});
-    //   console.log({index});
-    // });
   }
 
-  onChange() {
-    console.log(":: 2", ":: value has changed");
+  ColourValues(): Observable<any> {
+    const userColourValues = "../data/values.json";
+    return this.http.get(userColourValues);
   }
-
-  onClickOut() {
-    console.log(":: 2", ":: user clicked out");
-  }
-  /* */
 
   /* collection of click functions */
 
   // Shade Colours
   onSelectedShadesOne(e: string) {
     console.log(":: 2 value", { e });
+    // tslint:disable-next-line: no-unused-expression
     e === "none" ? null : (this.valueSetting[0].start.shades.colour_1 = e);
     console.log(":: 2", this.valueSetting);
   }
@@ -184,13 +186,22 @@ export class ColourPickerVersionTwoComponent implements OnInit {
   onSave() {
     return;
   }
+
+  // Getting Colours
+  getKeys(): Observable<ButtonColoursService> {
+    return;
+  }
 }
 
-const valuation = new TestingClassesVersionOne('Inferno', ['cheese', 'peppers', 'source', 'bilbo']);
-console.log({valuation});
+const valuation = new TestingClassesVersionOne("Inferno", [
+  "cheese",
+  "peppers",
+  "source",
+  "bilbo"
+]);
+console.log({ valuation });
 
 // const valid = new ButtonStyling('semi', ['segment']);
 // console.log({valid});
 
 // const valid = new ButtonStyling(['something'], ['values'])
-

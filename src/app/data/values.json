@@ -1,0 +1,19 @@
+[
+  {
+    "shades": { "colour_1": "", "colour_2": "", "colour_3": "" },
+    "start_button": {
+      "border_1_colour": "",
+      "border_2_colour": "",
+      "border_3_colour": "",
+      "fill_colour": "",
+      "text_colour": "",
+      "pressed": {
+        "border_1_colour": "",
+        "border_2_colour": "",
+        "border_3_colour": "",
+        "fill_colour": "",
+        "text_colour": ""
+      }
+    }
+  }
+]

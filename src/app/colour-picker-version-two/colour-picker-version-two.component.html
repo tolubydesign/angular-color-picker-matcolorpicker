@@ -4,10 +4,10 @@
       <ng-template matStepLabel>Select Shades</ng-template>
       <!--  -->
 
-      <mat-card-content
-        *ngFor="let item of valueSetting; index as i"
-      >
-        {{item | json}}
+      <mat-card-content *ngFor="let item of valueSetting; index as i">
+        {{ item | json }} ***
+        <br />
+        <br />
         <!-- <pre>{{ item | json }}</pre> -->
         <!-- <mat-card-title>{{ item.start.shades }}</mat-card-title> -->
 
