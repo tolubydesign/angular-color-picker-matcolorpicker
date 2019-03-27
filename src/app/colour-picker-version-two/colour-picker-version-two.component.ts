@@ -6,9 +6,10 @@ import { Color } from "../ColorsClass";
 import {
   PressedButton,
   StartingButton,
-  TestingClassesVersionOne
+  TestingClassesVersionOne,
+  ShadededColour,
+  Customise
 } from "../button";
-import { ButtonColoursService } from "../button-colours.service";
 // for model to work
 import { Injectable } from "@angular/core";
 import { HttpClient } from "@angular/common/http";
@@ -84,7 +85,13 @@ export class ColourPickerVersionTwoComponent implements OnInit {
   // border_3_colour: "",
   // fill_colour: "",
   // text_colour: "",
-
+  customise = new Customise();
+  customiseKeys = Object.getOwnPropertyNames(this.customise);
+  
+  public shadedColourValues = new ShadededColour();
+  public pressedColourValues = new PressedButton();
+  public lengthOfShaded: number = Object.keys(this.shadedColourValues).length;
+  public shadedColoursArray = new Array(this.lengthOfShaded);
   public baseUserColourValues = "../data/values.json";
 
   ngOnInit() {
@@ -97,6 +104,10 @@ export class ColourPickerVersionTwoComponent implements OnInit {
     this.thirdFormGroup = this._formBuilder.group({
       secondCtrl: [""]
     });
+    console.log(this.pressedColourValues);
+    console.log(":: OBJECT first key", Object.keys(this.shadedColourValues)[0]);
+    console.log(Object.keys(this.shadedColourValues).length);
+    console.log(this.shadedColourValues);
   }
 
   ColourValues(): Observable<any> {
@@ -107,38 +118,47 @@ export class ColourPickerVersionTwoComponent implements OnInit {
   /* collection of click functions */
 
   // Shade Colours
-  onSelectedShadesOne(e: string) {
-    console.log(":: 2 value", { e });
-    // tslint:disable-next-line: no-unused-expression
-    e === "none" ? null : (this.valueSetting[0].start.shades.colour_1 = e);
-    console.log(":: 2", this.valueSetting);
+  public onSelectedShades(level1Key: string, level2key:string, colour: string) {
+    console.log("onSelectedShades", level1Key, level2key);
+    this.customise[level1Key][level2key] = colour;
+    console.log("value is now:", this.customise)
   }
+
+  public getKeys(obj: any): string[]{
+    return Object.getOwnPropertyNames(obj);
+  }
+
+  // onSelectedShades(e: string) {
+  //   console.log(":: 2 value", { e });
+  //   e === "none" ? null : (this.shadedColourValues.colourOne = e);
+  //   console.log(":: 2", this.shadedColourValues);
+  // }
   onSelectedShadesTwo(e: string) {
     console.log(":: 2 value", { e });
-    this.valueSetting[0].start.shades.colour_2 = e;
-    console.log(":: 2", this.valueSetting);
+    e === "none" ? null : (this.shadedColourValues.colourTwo = e);
+    console.log(":: 2", this.shadedColourValues);
   }
   onSelectedShadesThree(e: string) {
     console.log(":: 2 value", { e });
-    this.valueSetting[0].start.shades.colour_3 = e;
-    console.log(":: 2", this.valueSetting);
+    e === "none" ? null : (this.shadedColourValues.colourThree = e);
+    console.log(":: 2", this.shadedColourValues);
   }
 
   // Border Colours
   onSelectedStartBorderOne(e: string) {
     console.log(":: 2 value", { e });
-    this.valueSetting[0].start.start_button.border_1_colour = e;
-    console.log(":: 2", this.valueSetting);
+    this.pressedColourValues.borderOneColour = e;
+    console.log(":: 2", this.shadedColourValues);
   }
   onSelectedStartBorderTwo(e: string) {
     console.log(":: 2 value", { e });
-    this.valueSetting[0].start.start_button.border_2_colour = e;
-    console.log(":: 2", this.valueSetting);
+    this.pressedColourValues.borderTwoColour = e;
+    console.log(":: 2", this.shadedColourValues);
   }
   onSelectedStartBorderThree(e: string) {
     console.log(":: 2 value", { e });
-    this.valueSetting[0].start.start_button.border_3_colour = e;
-    console.log(":: 2", this.valueSetting);
+    this.pressedColourValues.borderThreeColour = e;
+    console.log(":: 2", this.shadedColourValues);
   }
 
   // Fill Colour
@@ -184,11 +204,6 @@ export class ColourPickerVersionTwoComponent implements OnInit {
 
   // saving colours
   onSave() {
-    return;
-  }
-
-  // Getting Colours
-  getKeys(): Observable<ButtonColoursService> {
     return;
   }
 }

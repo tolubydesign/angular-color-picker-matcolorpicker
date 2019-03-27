@@ -1,25 +1,24 @@
 <mat-card>
   <mat-horizontal-stepper linear="isLinear" #stepper>
-    <mat-step stepControl="firstFormGroup">
+    <mat-step stepControl="firstFormGroup" *ngFor="let customiseKey of getKeys(customise)">
       <ng-template matStepLabel>Select Shades</ng-template>
       <!--  -->
 
-      <mat-card-content *ngFor="let item of valueSetting; index as i">
-        {{ item | json }} ***
-        <br />
+      <mat-card-content *ngFor="let item of getKeys(customise[customiseKey])">
         <br />
         <!-- <pre>{{ item | json }}</pre> -->
         <!-- <mat-card-title>{{ item.start.shades }}</mat-card-title> -->
-
+        <p> {{customise[customiseKey] | json}}</p>
         <mcc-color-picker
-          (selected)="onSelectedShadesOne($event)"
+          [selectedColor]="customise[customiseKey][item]"
+          (selected)="onSelectedShades(customiseKey, item, $event)"
           usedColorStart="startingColors"
           hideHexForms="true"
         >
         </mcc-color-picker>
-        <!-- <pre> {{ item.start.shades | json }} </pre>  -->
-        <p [style.color]="this.valueSetting[0].start.shades.colour_1">
-          <!-- {{ this.valueSetting[0].start.shades.colour_1 }} -->
+        <pre>{{ i }}</pre>
+        <p [style.color]="onSelectedShades">
+          <!-- {{ this.valueSetting[0].start.shades.colour_1 }} --> 
         </p>
       </mat-card-content>
 
@@ -212,3 +211,9 @@
     </mat-step>
   </mat-horizontal-stepper>
 </mat-card>
+ 
+<p>something</p>
+
+<div *ngFor="let item of shadedColoursArray; index as i">
+   {{ i + 1 }} __ in the array
+</div>
