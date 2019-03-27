@@ -1,4 +1,4 @@
-export class PressedButton {
+export class ButtonPressedColours {
   public borderOneColour: string;
   public borderTwoColour: string;
   public borderThreeColour: string;
@@ -20,7 +20,7 @@ export class PressedButton {
   }
 }
 
-export class StartingButton extends PressedButton {
+export class StartingButton extends ButtonPressedColours {
   public constructor(
     borderOneColour?: string,
     borderTwoColour?: string,
@@ -40,23 +40,18 @@ export class StartingButton extends PressedButton {
 
 export class Customise {
   public button1: ShadededColour;
-  public button2: ShadededColour;
-  public button3: ShadededColour;
   public constructor(
     button1?: ShadededColour,
-    button2?: ShadededColour,
-    button3?: ShadededColour
   ) {
     this.button1 = button1 ? button1 : new ShadededColour();
-    this.button2 = button2 ? button2 : new ShadededColour();
-    this.button3 = button3 ? button3 : new ShadededColour();
+    // produce more buttons (ie button2 & button3) to increase the loop
   }
 }
 
 export class ShadededColour {
-  public colourOne: string = "#914E4E";
-  public colourTwo: string = "#214E4E";
-  public colourThree: string = "#918E4E";
+  public colourOne = '#914E4E';
+  public colourTwo = '#214E4E';
+  public colourThree = '#918E4E';
   public constructor(
     colourOne?: string,
     colourTwo?: string,
@@ -64,10 +59,6 @@ export class ShadededColour {
   ) {
     this.colourOne = colourOne ? colourOne : this.colourOne;
     this.colourTwo = colourTwo ? colourTwo : this.colourTwo;
-    this.colourThree = colourThree ? colourThree: this.colourThree;
+    this.colourThree = colourThree ? colourThree : this.colourThree;
   }
-}
-
-export class TestingClassesVersionOne {
-  constructor(public value: string, public values: string[]) {}
 }

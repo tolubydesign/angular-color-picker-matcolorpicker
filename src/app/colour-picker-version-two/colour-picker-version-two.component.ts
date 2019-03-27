@@ -4,9 +4,7 @@ import { FormGroup, FormBuilder, Validators, NgModel } from "@angular/forms";
 // import { COLORS } from "../mock-data";
 import { Color } from "../ColorsClass";
 import {
-  PressedButton,
-  StartingButton,
-  TestingClassesVersionOne,
+  ButtonPressedColours,
   ShadededColour,
   Customise
 } from "../button";
@@ -85,13 +83,14 @@ export class ColourPickerVersionTwoComponent implements OnInit {
   // border_3_colour: "",
   // fill_colour: "",
   // text_colour: "",
-  customise = new Customise();
+  customise = new Customise(new ShadededColour());
   customiseKeys = Object.getOwnPropertyNames(this.customise);
-  
+
   public shadedColourValues = new ShadededColour();
-  public pressedColourValues = new PressedButton();
-  public lengthOfShaded: number = Object.keys(this.shadedColourValues).length;
-  public shadedColoursArray = new Array(this.lengthOfShaded);
+  public buttonPressedColours = new ButtonPressedColours();
+  public startButtonColours = new ButtonPressedColours();
+  // public lengthOfShaded: number = Object.keys(this.shadedColourValues).length;
+  // public shadedColoursArray = new Array(this.lengthOfShaded);
   public baseUserColourValues = "../data/values.json";
 
   ngOnInit() {
@@ -104,10 +103,10 @@ export class ColourPickerVersionTwoComponent implements OnInit {
     this.thirdFormGroup = this._formBuilder.group({
       secondCtrl: [""]
     });
-    console.log(this.pressedColourValues);
+    console.log(this.buttonPressedColours);
     console.log(":: OBJECT first key", Object.keys(this.shadedColourValues)[0]);
-    console.log(Object.keys(this.shadedColourValues).length);
-    console.log(this.shadedColourValues);
+    // console.log(Object.keys(this.shadedColourValues).length);
+    console.log(Object.getOwnPropertyNames(this.customise));
   }
 
   ColourValues(): Observable<any> {
@@ -118,46 +117,54 @@ export class ColourPickerVersionTwoComponent implements OnInit {
   /* collection of click functions */
 
   // Shade Colours
-  public onSelectedShades(level1Key: string, level2key:string, colour: string) {
+  public onSelectedShades(level1Key: string, level2key: string, colour: string) {
     console.log("onSelectedShades", level1Key, level2key);
     this.customise[level1Key][level2key] = colour;
-    console.log("value is now:", this.customise)
+    console.log("value is now:", this.customise);
   }
+  // public onSelectedShades(e: string, value) {
+  //   console.log("onSelectedShades", level1Key, level2key);
+  //   this.customise[level1Key][level2key] = colour;
+  //   console.log("value is now:", this.customise)
+  // }
 
-  public getKeys(obj: any): string[]{
+  public getKeys(obj: any): string[] {
     return Object.getOwnPropertyNames(obj);
   }
 
-  // onSelectedShades(e: string) {
+
+  // onSelectedShadesTwo(e: string) {
   //   console.log(":: 2 value", { e });
-  //   e === "none" ? null : (this.shadedColourValues.colourOne = e);
+  //   e === "none" ? null : this.shadedColourValues.colourTwo = e;
   //   console.log(":: 2", this.shadedColourValues);
   // }
-  onSelectedShadesTwo(e: string) {
-    console.log(":: 2 value", { e });
-    e === "none" ? null : (this.shadedColourValues.colourTwo = e);
-    console.log(":: 2", this.shadedColourValues);
-  }
-  onSelectedShadesThree(e: string) {
-    console.log(":: 2 value", { e });
-    e === "none" ? null : (this.shadedColourValues.colourThree = e);
-    console.log(":: 2", this.shadedColourValues);
-  }
+  // onSelectedShadesThree(e: string) {
+  //   console.log(":: 2 value", { e });
+  //   e === "none" ? null : (this.shadedColourValues.colourThree = e);
+  //   console.log(":: 2", this.shadedColourValues);
+  // }
+
+  // COMBINED START BUTTON COLOURS (LOOP)
+  onSelectedStartButtonColours(e: string, colour: string) {
+    console.log({e});
+    console.log({colour})
+    
+  } 
 
   // Border Colours
   onSelectedStartBorderOne(e: string) {
     console.log(":: 2 value", { e });
-    this.pressedColourValues.borderOneColour = e;
+    this.buttonPressedColours.borderOneColour = e;
     console.log(":: 2", this.shadedColourValues);
   }
   onSelectedStartBorderTwo(e: string) {
     console.log(":: 2 value", { e });
-    this.pressedColourValues.borderTwoColour = e;
+    this.buttonPressedColours.borderTwoColour = e;
     console.log(":: 2", this.shadedColourValues);
   }
   onSelectedStartBorderThree(e: string) {
     console.log(":: 2 value", { e });
-    this.pressedColourValues.borderThreeColour = e;
+    this.buttonPressedColours.borderThreeColour = e;
     console.log(":: 2", this.shadedColourValues);
   }
 
@@ -208,15 +215,3 @@ export class ColourPickerVersionTwoComponent implements OnInit {
   }
 }
 
-const valuation = new TestingClassesVersionOne("Inferno", [
-  "cheese",
-  "peppers",
-  "source",
-  "bilbo"
-]);
-console.log({ valuation });
-
-// const valid = new ButtonStyling('semi', ['segment']);
-// console.log({valid});
-
-// const valid = new ButtonStyling(['something'], ['values'])

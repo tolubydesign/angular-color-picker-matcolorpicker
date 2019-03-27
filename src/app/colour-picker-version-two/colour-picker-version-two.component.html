@@ -5,9 +5,6 @@
       <!--  -->
 
       <mat-card-content *ngFor="let item of getKeys(customise[customiseKey])">
-        <br />
-        <!-- <pre>{{ item | json }}</pre> -->
-        <!-- <mat-card-title>{{ item.start.shades }}</mat-card-title> -->
         <p> {{customise[customiseKey] | json}}</p>
         <mcc-color-picker
           [selectedColor]="customise[customiseKey][item]"
@@ -32,10 +29,11 @@
     <mat-step stepControl="secondFormGroup">
       <ng-template matStepLabel>Start Button Colours</ng-template>
       <!--  -->
+
       <mat-card-content>
         <mat-card-title>Start Button Colour One</mat-card-title>
         <mcc-color-picker
-          (selected)="onSelectedStartBorderOne($event)"
+          (selected)="onSelectedStartBorderOne(item, $event)"
           usedColorStart="startingColors"
           hideHexForms="true"
         >
@@ -48,62 +46,7 @@
           {{ this.valueSetting[0].start.start_button.border_1_colour }}
         </p>
       </mat-card-content>
-      <mat-card-content>
-        <mat-card-title>Start Button Colour Two</mat-card-title>
-        <mcc-color-picker
-          (selected)="onSelectedStartBorderTwo($event)"
-          usedColorStart="startingColors"
-          hideHexForms="true"
-        >
-        </mcc-color-picker>
-        <p
-          [style.color]="
-            this.valueSetting[0].start.start_button.border_2_colour
-          "
-        >
-          {{ this.valueSetting[0].start.start_button.border_2_colour }}
-        </p>
-      </mat-card-content>
-      <mat-card-content>
-        <mat-card-title>Start Button Colour Three</mat-card-title>
-        <mcc-color-picker
-          (selected)="onSelectedStartBorderThree($event)"
-          usedColorStart="startingColors"
-          hideHexForms="true"
-        >
-        </mcc-color-picker>
-        <p
-          [style.color]="
-            this.valueSetting[0].start.start_button.border_3_colour
-          "
-        >
-          {{ this.valueSetting[0].start.start_button.border_3_colour }}
-        </p>
-      </mat-card-content>
-      <mat-card-content>
-        <mat-card-title>Start Button Fill Colour</mat-card-title>
-        <mcc-color-picker
-          (selected)="onSelectedStartFill($event)"
-          usedColorStart="startingColors"
-          hideHexForms="true"
-        >
-        </mcc-color-picker>
-        <p [style.color]="this.valueSetting[0].start.start_button.fill_colour">
-          {{ this.valueSetting[0].start.start_button.fill_colour }}
-        </p>
-      </mat-card-content>
-      <mat-card-content>
-        <mat-card-title>Start Button Text Colour</mat-card-title>
-        <mcc-color-picker
-          (selected)="onSelectedStartText($event)"
-          usedColorStart="startingColors"
-          hideHexForms="true"
-        >
-        </mcc-color-picker>
-        <p [style.color]="this.valueSetting[0].start.start_button.text_colour">
-          {{ this.valueSetting[0].start.start_button.text_colour }}
-        </p>
-      </mat-card-content>
+
       <!--  -->
       <div>
         <button mat-button matStepperPrevious>Back</button>
