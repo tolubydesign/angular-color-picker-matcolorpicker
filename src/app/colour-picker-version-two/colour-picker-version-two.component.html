@@ -1,50 +1,35 @@
 <mat-card>
   <mat-horizontal-stepper linear="isLinear" #stepper>
+    <!-- color picker -->
     <mat-step stepControl="firstFormGroup" *ngFor="let customiseKey of getKeys(customise)">
       <ng-template matStepLabel>Select Shades</ng-template>
-      <!--  -->
 
-      <mat-card-content *ngFor="let item of getKeys(customise[customiseKey])">
-        <p> {{customise[customiseKey] | json}}</p>
-        <mcc-color-picker
-          [selectedColor]="customise[customiseKey][item]"
-          (selected)="onSelectedShades(customiseKey, item, $event)"
-          usedColorStart="startingColors"
-          hideHexForms="true"
-        >
+      <!--  -->
+      <mat-card-content *ngFor="let item of getKeys(customise[customiseKey]); index as i">
+        <!-- <p> {{customise[customiseKey] | json}}</p> -->
+        <mat-card-title>Shaded Button Colour {{ i + 1 }}</mat-card-title>
+        <mcc-color-picker [selectedColor]="customise[customiseKey][item]"
+          (selected)="onSelectedShades(customiseKey, item, $event)" usedColorStart="startingColors" hideHexForms="true">
         </mcc-color-picker>
-        <pre>{{ i }}</pre>
-        <p [style.color]="onSelectedShades">
-          <!-- {{ this.valueSetting[0].start.shades.colour_1 }} --> 
-        </p>
       </mat-card-content>
-
       <!--  -->
+
       <div>
         <button mat-button matStepperNext>Next</button>
       </div>
       <!--  -->
     </mat-step>
 
-    <mat-step stepControl="secondFormGroup">
+    <mat-step stepControl="secondFormGroup" *ngFor="let startingColourSet of getKeys(startingColours)">
       <ng-template matStepLabel>Start Button Colours</ng-template>
       <!--  -->
 
-      <mat-card-content>
-        <mat-card-title>Start Button Colour One</mat-card-title>
-        <mcc-color-picker
-          (selected)="onSelectedStartBorderOne(item, $event)"
-          usedColorStart="startingColors"
-          hideHexForms="true"
-        >
+      <mat-card-content *ngFor="let value of getKeys(startingColours[startingColourSet]); index as i">
+        <mat-card-title>Start Button Colour {{ i + 1 }}</mat-card-title>
+        <mcc-color-picker [selectedColor]="startingColours[startingColourSet][value]"
+          (selected)="onSelectedStartButtonColours(startingColourSet, value, $event)" usedColorStart="startingColors"
+          hideHexForms="true">
         </mcc-color-picker>
-        <p
-          [style.color]="
-            this.valueSetting[0].start.start_button.border_1_colour
-          "
-        >
-          {{ this.valueSetting[0].start.start_button.border_1_colour }}
-        </p>
       </mat-card-content>
 
       <!--  -->
@@ -54,88 +39,14 @@
       </div>
     </mat-step>
 
-    <mat-step stepControl="thirdFormGroup">
+    <mat-step stepControl="thirdFormGroup" *ngFor="let pressedColourSet of getKeys(pressedColours)">
       <ng-template matStepLabel>Select Button Pressed Colours</ng-template>
       <!--  -->
-      <mat-card-content>
-        <mat-card-title>Pressed Border Colour One</mat-card-title>
-        <mcc-color-picker
-          (selected)="onSelectedPressedBorderOne($event)"
-          usedColorStart="startingColors"
-          hideHexForms="true"
-        >
+      <mat-card-content *ngFor="let value of getKeys(pressedColours[pressedColourSet]); index as i">
+        <mat-card-title>Pressed Border {{ i + 1 }} </mat-card-title>
+        <mcc-color-picker [selectedColor]="pressedColours[pressedColourSet][value]"
+          (selected)="onSelectedPressedColours(pressedColourSet, value, $event)" usedColorStart="startingColors" hideHexForms="true">
         </mcc-color-picker>
-        <p
-          [style.color]="
-            this.valueSetting[0].start.start_button.pressed.border_1_colour
-          "
-        >
-          {{ this.valueSetting[0].start.start_button.pressed.border_1_colour }}
-        </p>
-      </mat-card-content>
-      <mat-card-content>
-        <mat-card-title>Pressed Border Colour Two</mat-card-title>
-        <mcc-color-picker
-          (selected)="onSelectedPressedBorderTwo($event)"
-          usedColorStart="startingColors"
-          hideHexForms="true"
-        >
-        </mcc-color-picker>
-        <p
-          [style.color]="
-            this.valueSetting[0].start.start_button.pressed.border_2_colour
-          "
-        >
-          {{ this.valueSetting[0].start.start_button.pressed.border_2_colour }}
-        </p>
-      </mat-card-content>
-      <mat-card-content>
-        <mat-card-title>Pressed Border Colour Three</mat-card-title>
-        <mcc-color-picker
-          (selected)="onSelectedPressedBorderThree($event)"
-          usedColorStart="startingColors"
-          hideHexForms="true"
-        >
-        </mcc-color-picker>
-        <p
-          [style.color]="
-            this.valueSetting[0].start.start_button.pressed.border_3_colour
-          "
-        >
-          {{ this.valueSetting[0].start.start_button.pressed.border_3_colour }}
-        </p>
-      </mat-card-content>
-      <mat-card-content>
-        <mat-card-title>Pressed Fill Colour</mat-card-title>
-        <mcc-color-picker
-          (selected)="onSelectedPressedFill($event)"
-          usedColorStart="startingColors"
-          hideHexForms="true"
-        >
-        </mcc-color-picker>
-        <p
-          [style.color]="
-            this.valueSetting[0].start.start_button.pressed.fill_colour
-          "
-        >
-          {{ this.valueSetting[0].start.start_button.pressed.fill_colour }}
-        </p>
-      </mat-card-content>
-      <mat-card-content>
-        <mat-card-title>Pressed Text Colour</mat-card-title>
-        <mcc-color-picker
-          (selected)="onSelectedPressedText($event)"
-          usedColorStart="startingColors"
-          hideHexForms="true"
-        >
-        </mcc-color-picker>
-        <p
-          [style.color]="
-            this.valueSetting[0].start.start_button.pressed.text_colour
-          "
-        >
-          {{ this.valueSetting[0].start.start_button.pressed.text_colour }}
-        </p>
       </mat-card-content>
       <!--  -->
       <div>
@@ -154,9 +65,7 @@
     </mat-step>
   </mat-horizontal-stepper>
 </mat-card>
- 
-<p>something</p>
 
 <div *ngFor="let item of shadedColoursArray; index as i">
-   {{ i + 1 }} __ in the array
+  {{ i + 1 }} __ in the array
 </div>

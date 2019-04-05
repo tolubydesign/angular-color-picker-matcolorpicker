@@ -5,7 +5,9 @@ import { FormGroup, FormBuilder, Validators, NgModel } from "@angular/forms";
 import { Color } from "../ColorsClass";
 import {
   ButtonPressedColours,
-  ShadededColour,
+  ShadedColour,
+  Colours,
+  Start, Pressed,
   Customise
 } from "../button";
 // for model to work
@@ -26,7 +28,7 @@ import { Observable } from "rxjs";
 })
 export class ColourPickerVersionTwoComponent implements OnInit {
   // tslint:disable-next-line: variable-name
-  constructor(private _formBuilder: FormBuilder, private http: HttpClient) {}
+  constructor(private _formBuilder: FormBuilder, private http: HttpClient) { }
   /* colors */
   colorsUserValueSets: Color[];
   /* */
@@ -83,10 +85,20 @@ export class ColourPickerVersionTwoComponent implements OnInit {
   // border_3_colour: "",
   // fill_colour: "",
   // text_colour: "",
-  customise = new Customise(new ShadededColour());
+
+  /* get request for colours */
+  customise = new Customise(new ShadedColour());
   customiseKeys = Object.getOwnPropertyNames(this.customise);
 
-  public shadedColourValues = new ShadededColour();
+  startingColours = new Start(new Colours());
+  startingColourSet = Object.getOwnPropertyNames(this.startingColours);
+
+  pressedColours = new Pressed(new Colours());
+  pressedColourSet = Object.getOwnPropertyNames(this.pressedColours);
+
+  /* */
+
+  public shadedColourValues = new ShadedColour();
   public buttonPressedColours = new ButtonPressedColours();
   public startButtonColours = new ButtonPressedColours();
   // public lengthOfShaded: number = Object.keys(this.shadedColourValues).length;
@@ -133,6 +145,8 @@ export class ColourPickerVersionTwoComponent implements OnInit {
   }
 
 
+
+
   // onSelectedShadesTwo(e: string) {
   //   console.log(":: 2 value", { e });
   //   e === "none" ? null : this.shadedColourValues.colourTwo = e;
@@ -145,11 +159,19 @@ export class ColourPickerVersionTwoComponent implements OnInit {
   // }
 
   // COMBINED START BUTTON COLOURS (LOOP)
-  onSelectedStartButtonColours(e: string, colour: string) {
-    console.log({e});
-    console.log({colour})
-    
-  } 
+  onSelectedStartButtonColours(e: string, a: string, colour: string) {
+    // console.log({e});
+    console.log({ a });
+    this.startingColours[e][a] = colour;
+    console.log('current value', this.startingColours);
+  }
+
+  // COMBINED PRESSED BUTTON COLOURS (LOOP)
+  onSelectedPressedColours(Value1: string, Value2: string, colour) {
+    console.log({ Value2 });
+    this.pressedColours[Value1][Value2] = colour;
+    console.log('current pressed value', this.pressedColours);
+  }
 
   // Border Colours
   onSelectedStartBorderOne(e: string) {
