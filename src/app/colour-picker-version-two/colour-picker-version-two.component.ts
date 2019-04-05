@@ -40,53 +40,7 @@ export class ColourPickerVersionTwoComponent implements OnInit {
   thirdFormGroup: FormGroup;
   /* end Steppers */
 
-  valueSetting: Color[] = [
-    {
-      start: {
-        logo: {
-          url: "https://picsum.photos/800/300",
-          height_percentage: 14
-        },
-        sub_logo_text_colour: "#FFFFFF",
-        background_url: "https://picsum.photos/200/300",
-        footer_logo_url: "https://picsum.photos/200/300",
-        footer_logo_text_colour: "#FFFFFF",
-        shades: {
-          colour_1: "",
-          colour_2: "",
-          colour_3: ""
-        },
-        start_button: {
-          border_1_colour: "",
-          border_2_colour: "",
-          border_3_colour: "",
-          fill_colour: "",
-          text_colour: "",
-          pressed: {
-            border_1_colour: "",
-            border_2_colour: "",
-            border_3_colour: "",
-            fill_colour: "",
-            text_colour: ""
-          }
-        }
-      }
-    }
-  ];
 
-  // make start button class - pressed is also a type start button. BUT it doesn't contain a pressed
-  // inheritance of class. Constructors.
-  // On the Model StartButton - create a method getKeys which returns a string array of keys  - border_1_colour.... pressed_border_colour
-  // method set colour (key, value) notation. pressed.border_1_colour border_1_colour
-  // Start Button:
-
-  // border_1_colour: "",
-  // border_2_colour: "",
-  // border_3_colour: "",
-  // fill_colour: "",
-  // text_colour: "",
-
-  /* get request for colours */
   customise = new Customise(new ShadedColour());
   customiseKeys = Object.getOwnPropertyNames(this.customise);
 
@@ -101,8 +55,6 @@ export class ColourPickerVersionTwoComponent implements OnInit {
   public shadedColourValues = new ShadedColour();
   public buttonPressedColours = new ButtonPressedColours();
   public startButtonColours = new ButtonPressedColours();
-  // public lengthOfShaded: number = Object.keys(this.shadedColourValues).length;
-  // public shadedColoursArray = new Array(this.lengthOfShaded);
   public baseUserColourValues = "../data/values.json";
 
   ngOnInit() {
@@ -121,42 +73,18 @@ export class ColourPickerVersionTwoComponent implements OnInit {
     console.log(Object.getOwnPropertyNames(this.customise));
   }
 
-  ColourValues(): Observable<any> {
-    const userColourValues = "../data/values.json";
-    return this.http.get(userColourValues);
+  public getKeys(obj: any): string[] {
+    return Object.getOwnPropertyNames(obj);
   }
 
   /* collection of click functions */
 
-  // Shade Colours
+  // COMBINED SHADED COLOURS (LOOP)
   public onSelectedShades(level1Key: string, level2key: string, colour: string) {
     console.log("onSelectedShades", level1Key, level2key);
     this.customise[level1Key][level2key] = colour;
     console.log("value is now:", this.customise);
   }
-  // public onSelectedShades(e: string, value) {
-  //   console.log("onSelectedShades", level1Key, level2key);
-  //   this.customise[level1Key][level2key] = colour;
-  //   console.log("value is now:", this.customise)
-  // }
-
-  public getKeys(obj: any): string[] {
-    return Object.getOwnPropertyNames(obj);
-  }
-
-
-
-
-  // onSelectedShadesTwo(e: string) {
-  //   console.log(":: 2 value", { e });
-  //   e === "none" ? null : this.shadedColourValues.colourTwo = e;
-  //   console.log(":: 2", this.shadedColourValues);
-  // }
-  // onSelectedShadesThree(e: string) {
-  //   console.log(":: 2 value", { e });
-  //   e === "none" ? null : (this.shadedColourValues.colourThree = e);
-  //   console.log(":: 2", this.shadedColourValues);
-  // }
 
   // COMBINED START BUTTON COLOURS (LOOP)
   onSelectedStartButtonColours(e: string, a: string, colour: string) {
@@ -173,67 +101,12 @@ export class ColourPickerVersionTwoComponent implements OnInit {
     console.log('current pressed value', this.pressedColours);
   }
 
-  // Border Colours
-  onSelectedStartBorderOne(e: string) {
-    console.log(":: 2 value", { e });
-    this.buttonPressedColours.borderOneColour = e;
-    console.log(":: 2", this.shadedColourValues);
-  }
-  onSelectedStartBorderTwo(e: string) {
-    console.log(":: 2 value", { e });
-    this.buttonPressedColours.borderTwoColour = e;
-    console.log(":: 2", this.shadedColourValues);
-  }
-  onSelectedStartBorderThree(e: string) {
-    console.log(":: 2 value", { e });
-    this.buttonPressedColours.borderThreeColour = e;
-    console.log(":: 2", this.shadedColourValues);
-  }
-
-  // Fill Colour
-  onSelectedStartFill(e: string) {
-    console.log(":: 2 value", { e });
-    this.valueSetting[0].start.start_button.fill_colour = e;
-    console.log(":: 2", this.valueSetting);
-  }
-
-  // Text Colour
-  onSelectedStartText(e: string) {
-    console.log(":: 2 value", { e });
-    this.valueSetting[0].start.start_button.text_colour = e;
-    console.log(":: 2", this.valueSetting);
-  }
-
-  // Pressed Colours
-  onSelectedPressedBorderOne(e: string) {
-    console.log(":: 2 value", { e });
-    this.valueSetting[0].start.start_button.pressed.border_1_colour = e;
-    console.log(":: 2", this.valueSetting);
-  }
-  onSelectedPressedBorderTwo(e: string) {
-    console.log(":: 2 value", { e });
-    this.valueSetting[0].start.start_button.pressed.border_2_colour = e;
-    console.log(":: 2", this.valueSetting);
-  }
-  onSelectedPressedBorderThree(e: string) {
-    console.log(":: 2 value", { e });
-    this.valueSetting[0].start.start_button.pressed.border_3_colour = e;
-    console.log(":: 2", this.valueSetting);
-  }
-  onSelectedPressedFill(e: string) {
-    console.log(":: 2 value", { e });
-    this.valueSetting[0].start.start_button.pressed.fill_colour = e;
-    console.log(":: 2", this.valueSetting);
-  }
-  onSelectedPressedText(e: string) {
-    console.log(":: 2 value", { e });
-    this.valueSetting[0].start.start_button.pressed.text_colour = e;
-    console.log(":: 2", this.valueSetting);
-  }
-
   // saving colours
   onSave() {
-    return;
+    // console.log(':: current SHADE values', this.customise);
+    // console.log(':: current START values', this.startingColours);
+    // console.log(':: current PRESSED values', this.pressedColours);
+    const valueCollection = [this.customise, this.startingColours, this.pressedColours];
+    console.log(valueCollection);
   }
 }
-

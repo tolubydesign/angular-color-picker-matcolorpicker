@@ -1,44 +1,40 @@
 <mat-card>
   <mat-horizontal-stepper linear="isLinear" #stepper>
     <!-- color picker -->
+    <!-- step -->
     <mat-step stepControl="firstFormGroup" *ngFor="let customiseKey of getKeys(customise)">
       <ng-template matStepLabel>Select Shades</ng-template>
-
       <!--  -->
       <mat-card-content *ngFor="let item of getKeys(customise[customiseKey]); index as i">
-        <!-- <p> {{customise[customiseKey] | json}}</p> -->
         <mat-card-title>Shaded Button Colour {{ i + 1 }}</mat-card-title>
         <mcc-color-picker [selectedColor]="customise[customiseKey][item]"
           (selected)="onSelectedShades(customiseKey, item, $event)" usedColorStart="startingColors" hideHexForms="true">
         </mcc-color-picker>
       </mat-card-content>
       <!--  -->
-
       <div>
         <button mat-button matStepperNext>Next</button>
       </div>
       <!--  -->
     </mat-step>
-
+    <!-- step -->
     <mat-step stepControl="secondFormGroup" *ngFor="let startingColourSet of getKeys(startingColours)">
       <ng-template matStepLabel>Start Button Colours</ng-template>
       <!--  -->
-
       <mat-card-content *ngFor="let value of getKeys(startingColours[startingColourSet]); index as i">
-        <mat-card-title>Start Button Colour {{ i + 1 }}</mat-card-title>
+        <mat-card-title>Start Button Colour {{ value }}</mat-card-title>
         <mcc-color-picker [selectedColor]="startingColours[startingColourSet][value]"
           (selected)="onSelectedStartButtonColours(startingColourSet, value, $event)" usedColorStart="startingColors"
           hideHexForms="true">
         </mcc-color-picker>
       </mat-card-content>
-
       <!--  -->
       <div>
         <button mat-button matStepperPrevious>Back</button>
         <button mat-button matStepperNext>Next</button>
       </div>
     </mat-step>
-
+    <!-- step -->
     <mat-step stepControl="thirdFormGroup" *ngFor="let pressedColourSet of getKeys(pressedColours)">
       <ng-template matStepLabel>Select Button Pressed Colours</ng-template>
       <!--  -->
@@ -54,7 +50,7 @@
         <button mat-button matStepperNext>Next</button>
       </div>
     </mat-step>
-
+    <!-- step -->
     <mat-step>
       <ng-template matStepLabel>Done</ng-template>
       You are now done.
